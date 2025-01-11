@@ -15,6 +15,7 @@ export const fetchHttp = async <TResponse, TPayload>(
         ...(reqBody && reqBody),
       },
     });
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error("Unknown server error");
