@@ -1,6 +1,6 @@
 import axios, { Method } from "axios";
 
-var apiUrl = "http://localhost:8080";
+var apiUrl = process.env.REACT_APP_API_URL;
 
 export const fetchHttp = async <TResponse, TPayload>(
   url: string,
@@ -15,7 +15,6 @@ export const fetchHttp = async <TResponse, TPayload>(
         ...(reqBody && reqBody),
       },
     });
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error("Unknown server error");

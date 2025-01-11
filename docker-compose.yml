@@ -21,9 +21,20 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DbConnectionString=Host=postgres;Port=5432;Username=postgres;Password=password;Database=bookdb
     ports:
-      - "8080:8080"
+      - 8080:8080
     depends_on:
       - postgres
+
+  bookapp:
+    container_name: book-app
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+      REACT_APP_API_URL: "http://localhost:8080"
+    ports:
+      - 1234:3000
 
 volumes:
   pgdata:
