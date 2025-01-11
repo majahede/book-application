@@ -17,5 +17,28 @@ namespace BookApi.Repositories
         {
             return await _context.Books.ToListAsync();
         }
+        public async Task<Book>? GetBookById(Guid id)
+        {
+            return await _context.Books.FindAsync(id);
+        }
+
+        public async Task CreateBook(Book book)
+        {
+            await _context.Books.AddAsync(book);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateBook(Book book, Book updatedBook)
+        {
+            book.Title = updatedBook.Title;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteBook(Book book)
+        {
+            _context.Books.Remove(book);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }
