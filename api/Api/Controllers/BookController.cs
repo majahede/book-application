@@ -1,8 +1,9 @@
-using BookApi.Interfaces;
-using BookApi.Models;
+using BookApi.Application.Dtos;
+using BookApi.Application.Interfaces;
+using BookApi.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookApi.Controllers
+namespace BookApi.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -11,7 +12,7 @@ namespace BookApi.Controllers
         private readonly IBookService _bookService;
         public BookController(IBookService bookService)
         {
-           _bookService = bookService;
+            _bookService = bookService;
         }
 
         [HttpGet]
@@ -31,7 +32,7 @@ namespace BookApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Book book)
+        public async Task<IActionResult> Create([FromBody] BookDto book)
         {
             var id = await _bookService.CreateBook(book);
 
@@ -40,7 +41,7 @@ namespace BookApi.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] Book book)
+        public async Task<IActionResult> Update(Guid id, [FromBody] BookDto book)
         {
             var updatedBook = await _bookService.UpdateBook(id, book);
 

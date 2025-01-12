@@ -1,9 +1,10 @@
-﻿using BookApi.Context;
-using BookApi.Interfaces;
-using BookApi.Models;
+﻿using BookApi.Application.Dtos;
+using BookApi.Application.Interfaces;
+using BookApi.Domain.Models;
+using BookApi.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookApi.Repositories
+namespace BookApi.Infrastructure.Repositories
 {
     public class BookRepository : IBookRepository
     {
@@ -28,7 +29,7 @@ namespace BookApi.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateBook(Book book, Book updatedBook)
+        public async Task UpdateBook(Book book, BookDto updatedBook)
         {
             book.Title = updatedBook.Title;
             await _context.SaveChangesAsync();

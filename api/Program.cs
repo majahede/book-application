@@ -1,7 +1,7 @@
-using BookApi.Context;
-using BookApi.Interfaces;
-using BookApi.Repositories;
-using BookApi.Services;
+using BookApi.Application.Interfaces;
+using BookApi.Application.Services;
+using BookApi.Infrastructure.Context;
+using BookApi.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

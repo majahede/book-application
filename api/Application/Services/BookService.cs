@@ -1,7 +1,8 @@
-﻿using BookApi.Interfaces;
-using BookApi.Models;
+﻿using BookApi.Application.Dtos;
+using BookApi.Application.Interfaces;
+using BookApi.Domain.Models;
 
-namespace BookApi.Services
+namespace BookApi.Application.Services
 {
     public class BookService : IBookService
     {
@@ -24,19 +25,23 @@ namespace BookApi.Services
         }
 
 
-        public async Task<Guid> CreateBook(Book book)
+        public async Task<Guid> CreateBook(BookDto book)
         {
             var id = Guid.NewGuid();
 
-            book.Id = id;
+            var newBook = new Book
+            {
+                Id = id,
+                Title = book.Title,
+            };           
 
-            await _bookRepository.CreateBook(book);
+            await _bookRepository.CreateBook(newBook);
 
             return id;
         }
 
 
-        public async Task<Book> UpdateBook(Guid id, Book updatedBook)
+        public async Task<Book> UpdateBook(Guid id, BookDto updatedBook)
         {
             var book = await GetBookById(id);
 

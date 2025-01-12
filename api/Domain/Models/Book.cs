@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace BookApi.Models
+namespace BookApi.Domain.Models
 {
     [Table("books")]
     public class Book
