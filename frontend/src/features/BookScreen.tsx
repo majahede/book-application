@@ -26,7 +26,7 @@ export default function BookScreen() {
         {error ? (
           <p>{error}</p>
         ) : (
-          <ul style={{ listStyleType: "none", padding: 0 }}>
+          <ul style={{ padding: 0 }}>
             {books.map((book) => (
               <li
                 key={book.id}
@@ -34,7 +34,7 @@ export default function BookScreen() {
                   padding: "0.5rem",
                 }}
               >
-                <strong>{book.title}</strong>
+                {book.title}
               </li>
             ))}
           </ul>

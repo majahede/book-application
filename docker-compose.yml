@@ -15,7 +15,7 @@ services:
   bookapi:
     container_name: book-api
     build:
-      context: ./BookApi
+      context: ./api
       dockerfile: Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

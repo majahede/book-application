@@ -1,12 +1,3 @@
-DO
-$$
-BEGIN
-    IF NOT EXISTS (SELECT 1 FROM pg_database WHERE datname = 'bookdb') THEN
-        CREATE DATABASE bookdb;
-    END IF;
-END
-$$;
-
 CREATE TABLE books (
     id UUID PRIMARY KEY,
     title VARCHAR(50) NOT NULL
