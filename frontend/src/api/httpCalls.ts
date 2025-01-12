@@ -11,12 +11,10 @@ export const fetchHttp = async <TResponse, TPayload>(
     const response = await axios(`${apiUrl}/${endpoint}`, {
       method: method,
       headers: { "content-type": "application/json" },
-      data: {
-        ...(reqBody && reqBody),
-      },
+      data: reqBody,
     });
     return response.data;
-  } catch (error) {
-    throw new Error("Unknown server error");
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 };
