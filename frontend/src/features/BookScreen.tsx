@@ -4,31 +4,34 @@ import { getAllBooks } from "../api/bookApiCalls";
 
 export default function BookScreen() {
   const [books, setBooks] = useState<Book[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const books = await getAllBooks();
-      setBooks(books);
+      try {
+        const books = await getAllBooks();
+        setBooks(books);
+      } catch (err) {
+        setError("Services are not available");
+      }
     };
-    fetchData().catch(console.error);
+
+    fetchData();
   }, []);
 
   return (
     <>
       <div>
-        <h1>Book List</h1>
-        {books.length === 0 ? (
-          <p>No books available</p>
+        <h1>Books</h1>
+        {error ? (
+          <p>{error}</p>
         ) : (
           <ul style={{ listStyleType: "none", padding: 0 }}>
             {books.map((book) => (
               <li
                 key={book.id}
                 style={{
-                  marginBottom: "0.5rem",
                   padding: "0.5rem",
-                  border: "1px solid #ccc",
-                  borderRadius: "5px",
                 }}
               >
                 <strong>{book.title}</strong>
